@@ -10,7 +10,11 @@ const winningMessage = document.querySelector('.winning-message');
 const winningMessageText = document.querySelector('[data-winning-message-text]');
 const board = document.querySelector('#board');
 const restartButton = document.querySelector('#restart-button');
+const xScore = document.querySelector('#x-score');
+const circleScore = document.querySelector('#circle-score');
 let circleTurn;
+let circlePoints = 0;
+let xPoints = 0;
 
 startGame();
 
@@ -49,7 +53,14 @@ function endGame(draw) {
     winningMessageText.innerText = `It's a draw!`
   } else {
     winningMessageText.innerText = `${circleTurn ? 'O' : 'X'} is the winner!`
+    updateScore();
   }
+}
+
+function updateScore() {
+  circleTurn ? circlePoints++ : xPoints++;
+  circleScore.innerText = circlePoints;
+  xScore.innerText = xPoints;
 }
 
 function isDraw() {
